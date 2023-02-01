@@ -1,0 +1,168 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Open+Sans:ital,wght@0,300;0,400;1,300;1,400&family=Poppins:wght@100;400;600&family=Prompt:wght@100&family=Rowdies:wght@300&family=Titillium+Web&display=swap');
+
+
+* {
+    font-family: 'Rowdies', cursive;
+}
+
+html {
+    font-size: 14px;
+}
+
+@media (min-width: 768px) {
+    html {
+        font-size: 16px;
+    }
+}
+
+html {
+    position: relative;
+    min-height: 100%;
+}
+
+body {
+    margin-bottom: 60px;
+    background-color: #00215a;
+}
+
+#menu {
+    background-color: #293241;
+}
+
+.menu-title {
+    color: #ee6c4d;
+}
+
+.img-menu {
+    width: 20%;
+}
+
+.livro-list {
+    display: flex;
+    list-style: none;
+}
+
+.livro-item {
+    padding-left: 3em;
+    padding-top: 3em;
+}
+
+    .livro-item p {
+        color: #98c1d9;
+        font-size: 14pt;
+    }
+
+.livro-item2 {
+    color: #98c1d9;
+    font-size: 16pt;
+}
+
+
+.livro-item h3 {
+    color: #e0fbfc;
+}
+
+.title-page {
+    color: #ee6c4d;
+    padding-top: 3em;
+    padding-bottom: 4em;
+}
+
+.title-details {
+    color: #ee6c4d;
+}
+
+.bg-card {
+    background-color: #000;
+}
+
+.bg-button {
+    background-color: #ee6c4d;
+}
+
+.bg-btn {
+    background-color: #b10011;
+    color: #fff;
+}
+
+.title-card {
+    color: #ee6c4d;
+    padding-top: .4em;
+    padding-bottom: 1em;
+}
+
+.buttons {
+    padding-left: 5em;
+    padding-top: 1em;
+}
+
+.buttons-edit-create {
+    padding-top: 1em;
+}
+
+
+
+.color-label {
+    color: #98c1d9;
+}
+
+.container-excluir {
+    border: 1px solid white;
+    padding: 2em;
+    margin: 2em;
+}
+
+.jumbotron {
+    padding-top: 3em;
+}
+
+.text-color-2 {
+    color: #e0fbfc;
+}
+
+.livro-details {
+    color: #e0fbfc;
+}
+
+.intro-site {
+    padding-top: 1em;
+    padding-bottom: 3em;
+}
+
+
+.logo-site-capa {
+    width: 200px;
+}
+
+.descricao {
+    padding-top: 3em;
+}
+
+
+#div-table {
+    padding: 2rem;
+}
+
+.form-cadastro {
+    position: absolute;
+    top: 10em;
+    left: 35em;
+    float: right;
+    width: 30vw;
+    height: 30vw;
+}
+
+.img-cadastro {
+    width: 25vw;
+}
+
+#login-img {
+    position: absolute;
+    right: 2em;
+    top: 0.01px;
+    float: right;
+}
+
+.position-details{
+    top:20em;
+}

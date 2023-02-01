@@ -1,0 +1,57 @@
+﻿@model WishListBooks.Models.Entities.LivrosLidos
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+@{
+    string capa = "https://http2.mlstatic.com/D_NQ_NP_860963-MLB29348284925_022019-O.jpg";
+}
+
+<div class="position-relative d-flex">
+<div class="position-absolute top-50 start-50">
+   <div class="livro-details">
+        <h3 class="text-color-1"><strong>Início da Leitura</strong></h3>
+         <p class="text-color-2">@Model.DataIni</p>
+    </div>
+
+    <div class="livro-details">
+         <h3 class="text-color-1"><strong>Fim da Leitura</strong></h3>
+         <p class="text-color-2">@Model.DataFim</p>
+    </div>
+
+    <div class="livro-details">
+        <h3 class="text-color-1"><strong>Crítica</strong></h3>
+        <p class="text-color-2">@Model.Critica</p>
+    </div>
+
+    
+</div>
+
+<div class="position-absolute top-0 end-0 mb-5">
+    <div class="float-end">
+        <img class="w-100" src="@capa"/>
+    </div> 
+    <div class="float-none">
+         <h3 class="text-color-1"></h3>
+         <p class="text-color-2">Usuário: #@Model.User.Login</p>
+     </div>
+</div>
+
+<div class="float-start mb-5">
+    <a class="btn btn-warning" asp-action="Edit" asp-route-id="@Model.Id">Edit</a> 
+    <a class="btn btn-dark" asp-action="Index">Back to List</a>
+</div>
+
+<div class="position-absolute position-details start-0 mt-5">
+        <h1 class="float-start display-1 title-details">@Model.Livro.Nome</h1>
+        <div class="">
+            @for (var i = 0; i < Model.Avaliacao; i++)
+            {
+                <img class="" width="30" heigth="10" src="~/img/estrela.png"/>
+            }
+        </div>   
+    </div>   
+</div>
+
+

@@ -1,0 +1,104 @@
+﻿@model IEnumerable<WishListBooks.Models.Entities.LivrosLidos>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+@if (TempData["MensagemSucesso"] != null)
+{
+                        <div class="alert alert-success alert-dismissible" role="alert">
+                           <div> @TempData["MensagemSucesso"]</div>
+                           <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>
+}
+
+@if (TempData["MensagemErro"] != null)
+{
+            <div class="alert alert-danger alert-dismissible" role="alert">
+                <div> @TempData["MensagemErro"]</div>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+}
+
+
+
+
+<div class="text-center title-page">
+    <h1 class="display-1"><strong>Avaliação</strong></h1>
+</div>
+
+<div class="jumbotron">
+    <p class="lead text-color-2">Compartilhe sua opnião sobre diversos livros! </p>
+
+    <p class="lead">
+        <a class="btn btn-light" asp-area="" asp-controller="LivrosLidos" asp-action="Create">Cadastrar</a>
+    </p>
+</div>
+
+
+
+@{
+    string capa = "https://http2.mlstatic.com/D_NQ_NP_860963-MLB29348284925_022019-O.jpg";
+}
+<div class="justify-content-center d-flex">
+@if(Model.Count() <= 0){
+    
+            <h3 class="p-3 text-dark bg-info bg-opacity-70 border border-info">Nenhuma avaliação ainda!</h3>
+   
+}
+</div>
+
+
+<div class="d-flex row justify-content-center">
+    @foreach (var item in Model)
+    {
+
+
+            <div class="card bg-button col-3 m-2" style="width: 18rem;">
+            <div class="card-header">
+                <img class="card-img-top mt-2" src="@capa">
+            </div>
+            <div class="card-body position-relative">
+                        <h3 class="text-dark flex-wrap w-75">@item.Livro.Nome</h3>
+                        <div class="position-absolute top-0 end-0 mt-3">
+                @for (var i = 0; i < item.Avaliacao; i++)
+                {
+                        <img class="" width="15" heigth="10" src="~/img/estrela.png"/>
+                }
+                    </div>
+                <div class=" mt-3">
+                        <small class="text-dark text-nowrap">Usuário: #@item.User.Login</small>
+                </div>
+                    <div class="form-group mt-4">
+                    <a class="btn btn-dark w-100 btn-block" asp-controller="LivrosLidos" asp-action="Details" asp-route-id="@item.Id">Abrir</a>
+                        <a class="btn bg-btn w-100 btn-block mt-2" href="#" onclick="deleteAvaliacao(@item.Id)">Delete</a>
+                </div>
+            </div>
+        </div>
+
+
+    }
+</div>
+
+@section Scripts{
+                    <script>
+                            const deleteAvaliacao = (idParam) => {
+                        msgModalMessage(`Deseja realmente excluir essa avaliação?`, 'Avaliaçao', () => {
+                            $.ajax({
+                                url: `@Url.Action("Delete")`,
+                                method: 'POST',
+                                data: {
+                                    id: idParam
+                                },
+                                success: (resp) => {
+                                    if (resp.code == '200') {
+                                        liveToastMessage(`A avaliação foi excluída.`, 'Avaliação');
+                                        setTimeout(() => { window.location.reload(); }, 4000);
+                                    }
+                                }
+                            });
+                            closeMsgModalMessage();
+                        });
+                    };
+                    </script>
+}

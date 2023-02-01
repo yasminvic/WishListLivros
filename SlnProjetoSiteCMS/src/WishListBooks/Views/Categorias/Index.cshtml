@@ -1,0 +1,90 @@
+﻿@model IEnumerable<WishListBooks.Models.Entities.Categoria>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+@if (TempData["MensagemSucesso"] != null)
+{
+        <div class="alert alert-success alert-dismissible" role="alert">
+           <div> @TempData["MensagemSucesso"]</div>
+           <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+}
+
+@if (TempData["MensagemErro"] != null)
+{
+    <div class="alert alert-danger d-flex align-items-center" role="alert">
+        @TempData["MensagemErro"]
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+}
+
+<h1 class="text-center mt-3 menu-title">Lista de Categorias</h1>
+
+<p>
+    <a class="btn btn-light" asp-action="Create">Adicionar categoria</a>
+</p>
+
+<div class="bg-light p-3">
+<table class="table  table-light  table-hover">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Id)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Nome)
+            </th>
+            
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nome)
+            </td>
+            <td>
+                <a class="btn btn-warning" asp-action="Edit" asp-route-id="@item.Id" data-bs-toggle="tooltip" data-bs-html="true" data-bs-title="Editar">
+                    <img  width="30" height="30" src="~/img/editar.png">
+                </a> 
+                    <a class="btn btn-primary" asp-action="Details" asp-route-id="@item.Id" data-bs-toggle="tooltip" data-bs-html="true" data-bs-title="Ver Detalhes">
+                        <img width="30" height="30" src="~/img/file.png">
+                </a> 
+                <a class="btn btn-danger" href="#" onclick="deleteCategory(@item.Id)" data-bs-toggle="tooltip" data-bs-html="true" data-bs-title="Excluir">
+                    <img width="30" height="30" src="~/img/lixeira.png">
+                </a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+</div>
+
+@section Scripts{
+        <script>
+                const deleteCategory = (idParam) => {
+            msgModalMessage(`Deseja realmente excluir o registro ${idParam}?`, 'Categoria', () => {
+                $.ajax({
+                    url: `@Url.Action("Delete")`,
+                    method: 'POST',
+                    data: {
+                        id: idParam
+                    },
+                    success: (resp) => {
+                        if (resp.code == '200') {
+                            liveToastMessage(`O Registro ${idParam} foi excluído.`, 'Categoria');
+                            setTimeout(() => { window.location.reload(); }, 4000);
+                        }
+                    }
+                });
+                closeMsgModalMessage();
+            });
+        };
+        </script>
+}

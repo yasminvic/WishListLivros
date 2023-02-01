@@ -1,0 +1,84 @@
+﻿@model IEnumerable<WishListBooks.Models.Entities.Livro>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+@if (TempData["MensagemSucesso"] != null)
+{
+                    <div class="alert alert-success alert-dismissible" role="alert">
+                       <div> @TempData["MensagemSucesso"]</div>
+                       <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+}
+
+@if (TempData["MensagemErro"] != null)
+{
+        <div class="alert alert-danger alert-dismissible" role="alert">
+            <div> @TempData["MensagemErro"]</div>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+}
+
+
+
+
+<div class="text-center title-page">
+    <h1 class="display-1"><strong>Livros Cadastrados</strong></h1>
+</div>
+
+<div class="jumbotron">
+    <p class="lead text-color-2">Cadastre aqui seus livros favoritos</p>
+
+    <p class="lead">
+        <a class="btn btn-light" asp-area="" asp-controller="Livros" asp-action="Create">Cadastrar</a>
+    </p>
+</div>
+
+
+
+@{
+    string capa = "https://http2.mlstatic.com/D_NQ_NP_860963-MLB29348284925_022019-O.jpg";
+}
+
+<div class="d-flex row justify-content-center">
+@foreach (var item in Model)
+{
+
+                        
+        <div class="card bg-card col-3 m-2" style="width: 18rem;">
+        <div class="card-header">
+            <img class="card-img-top mt-2" src="@capa">
+        </div>
+        <div class="card-body">
+                <h3 class="card-title title-card text-white text-wrap">@item.Nome</h3>
+            <a class="btn w-100 btn-block bg-button" asp-controller="Livros" asp-action="Details" asp-route-id="@item.Id">Abrir</a>
+            <a href="#" onclick="deleteLivro(@item.Id)" class="btn btn-block w-100 mt-2 bg-btn" id="button-excluir">Excluir</a>
+        </div>
+    </div>
+}
+</div>
+
+@section Scripts{
+                    <script>
+                            const deleteLivro = (idParam) => {
+                        msgModalMessage(`Deseja realmente excluir esse livro?`, 'Livros', () => {
+                            $.ajax({
+                                url: `@Url.Action("Delete")`,
+                                method: 'POST',
+                                data: {
+                                    id: idParam
+                                },
+                                success: (resp) => {
+                                    if (resp.code == '200') {
+                                        liveToastMessage(`O Livro foi excluído.`, 'Livros');
+                                        setTimeout(() => { window.location.reload(); }, 4000);
+                                    }
+                                }
+                            });
+                            closeMsgModalMessage();
+                        });
+                    };
+                    </script>
+}
+

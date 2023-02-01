@@ -1,0 +1,65 @@
+﻿@model WishListBooks.Models.Entities.LivrosLidos
+
+@{
+    ViewData["Title"] = "Editar";
+}
+
+<div class="text-center title-page">
+    <h1 class="display-1"><strong>Editar Avaliação</strong></h1>
+    <p class="display-6"></p>
+</div>                      
+
+
+
+<form asp-controller="LivrosLidos" asp-action="Edit" method="post">
+ <div class="container">
+    <div class="row justify-content-center">
+    <div class="col-3">
+        <div class="form-group">
+
+         <label asp-for="LivroId" for="livroId" class="color-label">Nome do Livro</label>
+        <select asp-for="LivroId" class="form-control" asp-items="ViewBag.LivroId"></select>
+        <span asp-validation-for="LivroId" class="text-danger"></span> 
+
+        <label asp-for="DataIni" class="color-label">Início da Leitura</label>
+        <input asp-for="DataIni"  class="form-control"  aria-describedby="emailHelp" placeholder="Início da Leitura">
+        <span asp-validation-for="DataIni" class="text-danger"></span>
+
+        <label asp-for="DataFim" for="dataFim" class="color-label">Fim da leitura</label>
+        <input asp-for="DataFim" class="form-control" aria-describedby="emailHelp" placeholder="Fim da leitura">
+        <span asp-validation-for="DataFim" class="text-danger"></span>
+
+        <label asp-for="Critica" for="editora" class="color-label">Crítica</label>
+        <input asp-for="Critica" type="text" class="form-control" aria-describedby="emailHelp" placeholder="Crítica">
+        <span asp-validation-for="Critica" class="text-danger"></span>
+
+        <label asp-for="Avaliacao" for="ano" class="color-label">Avaliação</label>
+        <input asp-for="Avaliacao" class="form-control" aria-describedby="emailHelp" placeholder="Avaliação">
+        <span asp-validation-for="Avaliacao" class="text-danger"></span> 
+    </div>
+        <div class="buttons-edit-create form-group">
+            <input type="submit" class="btn btn-warning w-100 btn-block" id="button-editar" value="Editar">
+         </div> 
+</div>
+
+    </div>
+ </div>
+</form>
+
+
+<div>
+    <a class="btn btn-dark" asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+
+}
+
+
+
+
+
+

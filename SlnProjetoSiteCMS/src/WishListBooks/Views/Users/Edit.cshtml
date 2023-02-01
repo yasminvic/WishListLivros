@@ -1,0 +1,64 @@
+﻿@model WishListBooks.Models.Entities.User
+
+@{
+    ViewData["Title"] = "Editar";
+}
+
+<div class="text-center title-page">
+    <h1 class="display-1"><strong>Editar Usuário</strong></h1>
+    <p class="display-6"></p>
+</div>                      
+
+
+
+<form asp-controller="Users" asp-action="Edit" method="post">
+ <div class="container">
+    <div class="row justify-content-center">
+    <div class="col-3">
+        <div class="form-group">
+         <label asp-for="Nome" for="nome" class="color-label">Usuário</label>
+        <input asp-for="Nome" type="text" class="form-control" aria-describedby="emailHelp" placeholder="O nome do Usuário">
+        <span asp-validation-for="Nome" class="text-danger"></span> 
+
+        <label asp-for="Email" for="email" class="color-label">E-mail</label>
+        <input asp-for="Email" type="text" class="form-control" aria-describedby="emailHelp" placeholder="exemplo@gmail.com">
+        <span asp-validation-for="Email" class="text-danger"></span> 
+
+        <label asp-for="Login" for="login" class="color-label">Login</label>
+        <input asp-for="Login" type="text" class="form-control"  aria-describedby="emailHelp" placeholder="O login do usuário">
+        <span asp-validation-for="Login" class="text-danger"></span>
+
+        <label asp-for="Senha" for="senha" class="color-label">Senha</label>
+        <input asp-for="Senha" type="password" class="form-control" aria-describedby="emailHelp" placeholder="A senha do usuário">
+        <span asp-validation-for="Senha" class="text-danger"></span>
+
+        <label asp-for="CreatedDate" for="createdDate" class="color-label">Data de Criação</label>
+        <input asp-for="CreatedDate" disabled class="form-control" aria-describedby="emailHelp" placeholder="Data de Criação">
+        <span asp-validation-for="CreatedDate" class="text-danger"></span>    
+    </div>
+        <div class="buttons-edit-create form-group">
+            <input type="submit" class="btn btn-warning w-100 btn-block" id="button-editar" value="Editar">
+         </div> 
+</div>
+
+    </div>
+ </div>
+</form>
+
+
+<div>
+    <a class="btn btn-dark" asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+
+}
+
+
+
+
+
+

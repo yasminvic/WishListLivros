@@ -1,0 +1,17 @@
+﻿@model IEnumerable<WishListBooks.Models.Entities.User>
+
+@{
+    Layout = "_LayoutDeslogada";
+    ViewData["Title"] = "Index";
+}
+
+<div class="intro-site text-center">
+
+    <img class="logo-site-capa" src="~/img/open-book.png">
+</div>
+<h1 class="menu-title">Bem vindo(a) a sua Wish List</h1>
+<h4 class="text-white">Clique em Entrar para realizar o Login ou Cadastrar-se!</h4>
+
+<a class="btn btn-light btn-block w-50" asp-controller="Login" asp-action="Create">Entrar</a>
+
+

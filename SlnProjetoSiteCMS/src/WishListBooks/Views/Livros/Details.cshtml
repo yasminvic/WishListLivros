@@ -1,0 +1,51 @@
+﻿@model WishListBooks.Models.Entities.Livro
+
+@{
+    ViewData["Title"] = "Internal";
+}
+
+@{
+    string capa = "https://http2.mlstatic.com/D_NQ_NP_860963-MLB29348284925_022019-O.jpg";
+}
+
+<div class="text-center title-page">
+    <h1 class="display-1"><strong>@Model.Nome</strong></h1>
+</div>                      
+
+
+<section class="livro-internal">
+<div class="livro-container">
+<ul class="livro-list">
+    <li class="livro-item">
+    <img class="livro-img" src="@capa" />
+    </li>
+
+    <li class="livro-item">
+    <h3 class="text-color-1"><strong>Título:</strong></h3>
+     <p class="text-color-2">@Model.Nome</p>
+
+     <h3 class="text-color-1"><strong>Autor:</strong></h3>
+     <p class="text-color-2">@Model.Autor</p>
+
+    <h3 class="text-color-1"><strong>Gênero:</strong></h3>
+    <p class="text-color-2">@Model.Categoria.Nome</p>
+
+     <h3 class="text-color-1"><strong>Editora:</strong></h3>
+     <p class="text-color-2">@Model.Editora</p>
+ 
+     <h3 class="text-color-1"><strong>Ano Lançamento:</strong></h3>
+    <p class="text-color-2">@Model.AnoLancamento</p>
+
+     </li>
+
+</ul>
+</div>
+</section>
+
+
+<div class="buttons">
+    <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-warning" id="button-editar">Editar</a>
+<a class="btn btn-dark" asp-action="Index">Back to List</a>
+</div>
+
+

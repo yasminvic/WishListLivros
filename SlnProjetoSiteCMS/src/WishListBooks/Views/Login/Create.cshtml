@@ -1,0 +1,55 @@
+﻿@model WishListBooks.Models.Entities.LoginModel
+
+@{
+    Layout = "_LayoutDeslogada";
+    ViewData["Title"] = "Login";
+}
+
+@if (TempData["MensagemErro"] != null)
+{
+                <div class="alert alert-danger alert-dismissible" role="alert">
+                    <div> @TempData["MensagemErro"]</div>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+}
+
+
+
+<h1 class="menu-title">Login</h1>
+
+<hr class="bg-light" />
+<div class="row">
+    <div class="col-md-4">
+
+        <div class="float-start">
+
+            <img id="" class="border-end img-cadastro"  src="~/img/icone-contato.png"/>
+
+        </div>
+
+        <form id="" class="float-end form-cadastro mt-5" asp-controller="Login" asp-action="Entrar"  method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Login" class="color-label"></label>
+                <input asp-for="Login" class="form-control" placeholder="Informe o login"/>
+                <span asp-validation-for="Login" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Senha" class="color-label"></label>
+                <input asp-for="Senha" type="password" class="form-control" placeholder="Informe a senha"/>
+                <span asp-validation-for="Senha" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <button type="submit" class="btn btn-primary mt-2 btn-block w-100">Entrar</button>
+            </div>
+            <div class="form-group mt-3 float-end">
+                <p class="text-white">Não tem login? Cadastre-se</p>
+                <a class="btn btn-warning btn-block float-end" asp-controller="Users" asp-action="CreateLogin">Cadastrar</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
